@@ -1,0 +1,13 @@
+<launch>
+    <include file="$(find robot_details)/src/launch/gazebo.launch">
+    </include>
+<!-- Launch slam_gmapping Node -->  
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <param name="base_frame" value="base_footprint"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="map_frame" value="map"/>
+        <param name="delta" value="0.1"/>
+        <param name="particles" value="70"/>
+    <!-- Additional parameters can be adjusted as needed -->
+    </node>
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+    
+    <!-- Localization: Run amcl node -->
+    <include file = "$(find nav_pckg)/launch/amcl.launch" />
+    
+    <!-- Move the robot: Run move_base node -->
+    <include file = "$(find nav_pckg)/launch/movebase.launch" />
+    
+</launch>

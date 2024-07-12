@@ -1,0 +1,24 @@
+<launch>
+  <!-- Launch Gazebo with a custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+   <arg name="world_name" value="$(find robot_details)/src/world/cafe/full.world"/>
+   <!--<arg name="world_name" value="/home/srikaanth/Downloads/full.world"/>-->
+   <arg name="use_sim_time" value="true"/>
+  </include>
+  <!--<arg name="world_file" default="$(find robot_details)/src/world/full.world"/>
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="$(arg world_file)"/>-->
+  <!-- Load the URDF model -->
+  <!-- Spawn the URDF model in Gazebo -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find robot_details)/src/bot.urdf.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-param robot_description -urdf -model my_robot">
+  </node>
+  <!-- Start robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+  
+  <!-- Start joint state publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+    <param name="/use_gui" value="false" />
+  </node>
+</launch>

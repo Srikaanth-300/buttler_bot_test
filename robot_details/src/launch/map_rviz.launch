@@ -1,0 +1,8 @@
+<launch>
+    <!-- Start the map_server node -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find robot_details)/maps/cafe_map.yaml" />
+  
+    <!-- Start RViz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_details)/config/map_rviz.rviz" />
+</launch>
+  
