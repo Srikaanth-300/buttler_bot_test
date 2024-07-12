@@ -36,37 +36,6 @@ class nav_goal:
         cancel_id = msg.id
         order.remove(cancel_id)
         move_to_goal(order[id+1])
-'''def send_goal(list):
-    rospy.init_node('send_goal_node', anonymous=True)
-    
-    # Create an action client
-    client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-    
-    # Wait until the action server has started up and started listening for goals
-    client.wait_for_server()
-    for x in range(len(list)):
-    # Create a new goal to send to move_base
-     goal = MoveBaseGoal()
-     goal.target_pose.header.frame_id = "map"
-     goal.target_pose.header.stamp = rospy.Time.now()
-    
-    # Set the goal point
-     goal.target_pose.pose.position = Point(list[x][0],list[x][1],list[x][2])
-     goal.target_pose.pose.orientation = Quaternion(list[x][3],list[x][4],list[x][5],list[x][6])
-
-    # Send the goal
-     client.send_goal(goal)
-    
-    # Wait for the result (success or failure)
-     wait = client.wait_for_result()
-     time.sleep(1)
-    
-    # Check the result
-   # if not wait:
-        #rospy.logerr("Action server not available!")
-        #rospy.signal_shutdown("Action server not available!")
-    #else:
-    return client.get_result()'''
 
 if __name__ == '__main__':
     try:
@@ -84,10 +53,5 @@ if __name__ == '__main__':
             time.sleep(5)
         reach.move_to_goal(reach.dict[0])
 
-        
-        '''goal_points = [table_1,table_2,table_3,kitchen,home]
-        result = send_goal(goal_points)
-        if result:
-            rospy.loginfo("Goal execution done!")'''
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
